@@ -3,7 +3,7 @@ var message = lcfn.message;
 module.exports = {};
 module.exports.fn = function(event, callback) {
 
-	if (event.detail.userIdentity.userName === 'root') {
+	if (event.detail.userIdentity.userName === 'root' && event.detail.sourceIPAddress !== '99.101.20.31') {
 
 		var notification = {
 			subject: 'Root user logged in to the console.',
@@ -14,8 +14,9 @@ module.exports.fn = function(event, callback) {
 		message(notification, function(err, result) {
 			callback(err, result);
 		});
-	} else {
-		callback(null, 'Not user root login')
+	} else{
+
+		callback(null, 'no enviar mensaje');
 	}
 };
 
